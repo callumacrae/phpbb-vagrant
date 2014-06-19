@@ -1,0 +1,10 @@
+---
+workspace: /root
+php_xdebug_version: 2.2.5
+php_xdebug_module_path: /usr/lib/php5/modules
+php_xdebug_remote_enable: "false"
+php_xdebug_remote_connect_back: "false"
+php_xdebug_remote_host: localhost
+php_xdebug_remote_port: "9000"
+php_xdebug_remote_log: /tmp/xdebug.log
+php_xdebug_idekey: sublime.xdebug

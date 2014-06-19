@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  vars_files:
+    - vars/main.yml
+  roles:
+    - starter
+    - geerlingguy.mysql
+    - geerlingguy.apache
+    - geerlingguy.php
+    - geerlingguy.php-mysql
+    - php-xdebug # todo: replace with geerlingguy.php-xdebug when its fixed
+    - phpbb
+  sudo: yes # yolo

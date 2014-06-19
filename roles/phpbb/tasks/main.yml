@@ -1,0 +1,28 @@
+---
+
+- name: Create phpbb database
+  mysql_db: name=phpbb state=present
+
+- name: Create phpbb MySQL user
+  mysql_user: name=phpbb password=phpbb priv=*.*:ALL state=present
+
+#- name: Copy MySQL dump onto machine
+#  copy: src=dump.sql.bz2 dest=/tmp
+#
+#- name: Import MySQL dump
+#  mysql_db: name=phpbb state=import target=/tmp/dump.sql.bz2
+
+- name: Install git
+  apt: name=git state=present
+
+- name: Clone phpBB repository
+  git: >
+    repo=https://github.com/phpbb/phpbb.git
+    dest=/vagrant/phpbb
+    accept_hostkey=yes
+
+- name: Install composer dependencies
+  shell: php ../composer.phar install chdir=/vagrant/phpbb/phpBB
+
+- name: Ensure config.php exists
+  file: path=/vagrant/phpbb/phpBB/config.php state=touch

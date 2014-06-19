@@ -1,0 +1,4 @@
+mysql_root_password: phpbb
+
+apache_vhosts:
+   - {servername: "phpbb.dev", documentroot: "/vagrant/phpbb/phpBB"}
