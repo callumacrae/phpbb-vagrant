@@ -26,3 +26,6 @@
 
 - name: Ensure config.php exists
   file: path=/vagrant/phpbb/phpBB/config.php state=touch
+
+- name: Install imagemagick
+  apt: name=imagemagick
