@@ -11,6 +11,8 @@ You need the following ansible-galaxy packages installed:
 ansible-galaxy install geerlingguy.apache geerlingguy.mysql geerlingguy.php geerlingguy.php-mysql
 ```
 
+One day, `perlmonkey.mailcatcher` will be back.
+
 ## Installation
 
 All database credentials (username, password, database) are "phpbb".
