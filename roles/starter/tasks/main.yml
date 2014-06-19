@@ -2,6 +2,3 @@
 - name: Update apt-get (will probably take forever)
   apt: upgrade=dist update_cache=yes
   sudo: yes
-
-- name: Create /var/www/html # I have no idea why this needs doing
-  file: path=/var/www/html state=directory
