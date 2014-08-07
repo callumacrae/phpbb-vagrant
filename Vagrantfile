@@ -16,7 +16,6 @@ Vagrant.configure('2') do |config|
   end
 
   config.vm.provision :ansible do |ansible|
-    ansible.start_at_task = 'Make PHPUnit executable'
     ansible.playbook = 'playbook.yml'
   end
 end
