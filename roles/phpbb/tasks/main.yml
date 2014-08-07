@@ -20,6 +20,7 @@
     repo=https://github.com/phpbb/phpbb.git
     dest=/vagrant/phpbb
     accept_hostkey=yes
+    update=no
 
 - name: Install composer dependencies
   shell: php ../composer.phar install chdir=/vagrant/phpbb/phpBB
