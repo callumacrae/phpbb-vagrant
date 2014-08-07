@@ -26,7 +26,15 @@
   shell: php ../composer.phar install chdir=/vagrant/phpbb/phpBB
 
 - name: Ensure config.php exists
-  file: path=/vagrant/phpbb/phpBB/config.php state=touch
+  file: path=/vagrant/phpbb/phpBB/config.php state=touch mode=0664
+
+- name: Make stuff writeable
+  file: path=/vagrant/phpbb/phpBB/{{ item }} mode=0777
+  with_items:
+    - store
+    - cache
+    - files
+    - images/avatars/upload
 
 - name: Install imagemagick
   apt: name=imagemagick
