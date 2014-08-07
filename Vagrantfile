@@ -9,7 +9,7 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: '192.168.100.100'
 
   config.vm.synced_folder '.', '/vagrant',
-                          mount_options: ["dmode=775,fmode=764"]
+                          mount_options: ["dmode=775,fmode=764"] # yolo
 
   config.vm.provider :virtualbox do |v|
     v.name = 'phpbb-vagrant'
