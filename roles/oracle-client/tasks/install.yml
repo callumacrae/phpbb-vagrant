@@ -18,7 +18,7 @@
   register: libsqlplus_output
 
 - include: libsqlplus.yml
-  when: libsqlplus_output.stderr.find('libsqlplus.so') != -1
+  when: libsqlplus_output is defined and libsqlplus_output.stderr.find('libsqlplus.so') != -1
 
 - name: See if libaio1 needs installing
   shell: sqlplus64 -h
@@ -28,4 +28,4 @@
 
 - name: Install libaio1 if required
   apt: name=libaio1
-  when: sqlplus_output.stderr.find('libaio.so') != -1
+  when: sqlplus_output is defined and sqlplus_output.stderr.find('libaio.so') != -1
