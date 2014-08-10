@@ -38,3 +38,6 @@
 
 - name: Install imagemagick
   apt: name=imagemagick
+
+- name: Add www-data to vagrant group
+  user: name=www-data groups=vagrant
