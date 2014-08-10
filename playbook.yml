@@ -12,5 +12,6 @@
     - php-xdebug # todo: replace with geerlingguy.php-xdebug when its fixed
 #    - perlmonkey.mailcatcher # todo: This is broken
     - oracle-client
+    - oracle-php
     - phpbb
   sudo: yes # yolo

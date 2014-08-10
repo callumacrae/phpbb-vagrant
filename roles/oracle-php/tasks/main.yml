@@ -1,0 +1,24 @@
+---
+
+- name: Ensure pecl installed
+  apt: name=php-pear
+  sudo: yes
+
+- name: List installed pecl extensions
+  shell: pecl list | grep 'oci8'
+  ignore_errors: yes
+  register: oci8_check
+
+- name: Install oci8
+  shell: printf "\n" | pecl install oci8
+  when: oci8_check.rc == 1
+  sudo: yes
+
+- name: Create oci8.ini if it doesn't exist
+  file: path=/etc/php5/conf.d/oci8.ini state=touch
+  sudo: yes
+
+- name: Make oci8.ini
+  lineinfile: dest=/etc/php5/conf.d/oci8.ini line="extension=oci8.so"
+  notify: Restart apache
+  sudo: yes
