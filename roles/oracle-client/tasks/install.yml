@@ -1,0 +1,31 @@
+---
+
+- name: Ensure alien is installed
+  apt: name=alien
+
+- name: Install oracle sqlplus
+  shell: alien -i /vagrant/oracle/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+
+- name: Install oracle basic
+  shell: alien -i /vagrant/oracle/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+
+- name: Install oracle devel
+  shell: alien -i /vagrant/oracle/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+
+- name: See if libsqlplus is required
+  shell: sqlplus64 -h
+  ignore_errors: true
+  register: libsqlplus_output
+
+- include: libsqlplus.yml
+  when: libsqlplus_output.stderr.find('libsqlplus.so') != -1
+
+- name: See if libaio1 needs installing
+  shell: sqlplus64 -h
+  ignore_errors: true
+  register: sqlplus_output
+  environment: {LD_LIBRARY_PATH: '/usr/lib/oracle/12.1/client64/lib/'}
+
+- name: Install libaio1 if required
+  apt: name=libaio1
+  when: sqlplus_output.stderr.find('libaio.so') != -1

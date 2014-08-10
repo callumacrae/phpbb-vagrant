@@ -1,0 +1,13 @@
+---
+
+- name: See if LD_LIBRARY_PATH exists
+  shell: echo $LD_LIBRARY_PATH
+  register: ld_library_output
+
+- name: Add LD_LIBRARY_PATH if it doesn't exist
+  lineinfile: dest=/home/vagrant/.bashrc line="export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib/:$LD_LIBRARY_PATH"
+  when: ld_library_output.stdout.find('client64/lib/') == -1
+
+- name: Run ldconfig
+  shell: ldconfig
+  environment: {LD_LIBRARY_PATH: '/usr/lib/oracle/12.1/client64/lib/'}

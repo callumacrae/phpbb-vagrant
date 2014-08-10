@@ -18,3 +18,14 @@ One day, `perlmonkey.mailcatcher` will be back.
 All database credentials (username, password, database) are "phpbb".
 
 Root MySQL password is also "phpbb".
+
+## Adding Oracle
+
+To add Oracle db to the vm, download the following files from the Oracle
+[downloads page](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html):
+
+- oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+- oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+- oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+
+Add them to a directory called "oracle" in the root of this project.

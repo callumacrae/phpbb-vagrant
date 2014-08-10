@@ -6,3 +6,5 @@ apache_vhosts:
       documentroot: "/vagrant/phpbb/phpBB",
       extra_parameters: "ServerAlias *.vagrantshare.com"
    }
+
+oracle_error_when_missing: false

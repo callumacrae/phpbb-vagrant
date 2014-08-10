@@ -1,0 +1,37 @@
+---
+
+- name: See if Oracle basic is present
+  stat: path=/vagrant/oracle/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+  register: oracle_basic_exists
+
+- name: Fail if Oracle basic not present
+  fail: msg="Oracle basic not found"
+  when: oracle_error_when_missing and oracle_basic_exists.stat.exists == False
+
+- name: See if Oracle devel is present
+  stat: path=/vagrant/oracle/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+  register: oracle_devel_exists
+
+- name: Fail if Oracle devel not present
+  fail: msg="Oracle devel not found"
+  when: oracle_error_when_missing and oracle_devel_exists.stat.exists == False
+
+- name: See if Oracle sqlplus is present
+  stat: path=/vagrant/oracle/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+  register: oracle_sqlplus_exists
+
+- name: Fail if Oracle sqlplus not present
+  fail: msg="Oracle sqlplus not found"
+  when: oracle_error_when_missing and oracle_sqlplus_exists.stat.exists == False
+
+- name: Check if already installed
+  command: which sqlplus64
+  register: sqlplus_installed_check
+  ignore_errors: yes
+
+- include: install.yml
+  when: oracle_basic_exists.stat.exists
+    and oracle_devel_exists.stat.exists
+    and oracle_sqlplus_exists.stat.exists
+    and sqlplus_installed_check.rc == 1
+  sudo: yes
