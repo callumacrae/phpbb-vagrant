@@ -1,7 +1,8 @@
 # phpbb-vagrant
 
 A Vagrant machine and provisioning for phpBB development. Uses ansible for
-provisioning.
+provisioning. Unix install is easy, [Windows install is tricky](https://servercheck.in/blog/running-ansible-within-windows).
+Might be easier to use a vm.
 
 ## ansible-galaxy
 
